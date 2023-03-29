@@ -12,8 +12,6 @@ def index(request: WSGIHandler) -> HttpRequest:
 def register(request: WSGIHandler) -> HttpRequest:
     context = {}
     context['form'] = RegistrationForm
-    if request.method == 'POST':
-        pass
     return render(request, "register.html", context)
 
 def login(request: WSGIHandler) -> HttpRequest:
