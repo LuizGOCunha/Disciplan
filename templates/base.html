@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Disciplan</title>
+  </head>
+  <body>
+    <h1>Welcome to Disciplan</h1>
+    <ul>
+        <li style="display:inline">
+            <a href="{% url 'login' %}">Login</a>
+        </li>
+        <li style="display:inline">
+            <a href="{% url 'register' %}">Register</a>
+        </li>
+        <li style="display:inline"></li >
+        <li style="display:inline"></li>
+        <li style="display:inline"></li>
+    </ul>
+    {% block content %}
+    {% endblock %}
+  </body>
+</html>
