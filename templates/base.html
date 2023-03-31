@@ -7,15 +7,27 @@
     <h1>Welcome to Disciplan</h1>
     <ul>
         <li style="display:inline">
+          <a href="{% url 'index' %}">Home</a>
+        </li >
+        <li style="display:inline">
             <a href="{% url 'login' %}">Login</a>
         </li>
         <li style="display:inline">
             <a href="{% url 'register' %}">Register</a>
         </li>
-        <li style="display:inline"></li >
-        <li style="display:inline"></li>
+        <li style="display:inline">
+          <a href="{% url 'logout' %}">Logout</a>
+        </li>
         <li style="display:inline"></li>
     </ul>
+
+    {% if message %}
+    <script>
+      alert('{{message}}')
+    </script>
+    {% endif %}
+    
+
     {% block content %}
     {% endblock %}
   </body>

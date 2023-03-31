@@ -4,6 +4,10 @@ from django.contrib.auth.models import AbstractBaseUser
 
 # Create your models here.
 
+class UserManager(models.Manager):
+    def get_by_natural_key(self, email):
+        return self.get(email=email)
+
 
 class User(AbstractBaseUser):
     first_name = models.CharField(
@@ -14,6 +18,8 @@ class User(AbstractBaseUser):
     email = models.EmailField(unique=True)
 
     USERNAME_FIELD = "email"
+
+    objects = UserManager()
 
     def __str__(self) -> str:
         return f"{self.first_name} | {self.email}"

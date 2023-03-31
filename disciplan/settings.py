@@ -28,7 +28,8 @@ AUTH_USER_MODEL = "website.User"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# **** MUST BE CHANGED FOR DEPLOYMENT! ****
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
