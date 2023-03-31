@@ -33,7 +33,7 @@ class Activity(models.Model):
         (400, "hard"),
         (500, "very hard"),
     )
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='activities')
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True, null=True)
     difficulty = models.IntegerField(choices=DIFFICULTY_CHOICES)

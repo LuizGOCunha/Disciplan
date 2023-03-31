@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2> Create and review your activities </h2>
+<form method="post">
+    {% csrf_token %} 
+    {{form.as_p}}
+    <input type="submit" value="Submit"></input>
+</form>
+
+{% for activity in activities %}
+<br>
+<br>
+<br>
+<p>{{activity.title}}</p>
+<p>{{activity.difficulty}}</p>
+<p>{{activity.description}}</p>
+<form method="post">
+    {% csrf_token %}
+    <input type="hidden" name="delete" value={{activity.id}}>
+    <button type="submit">Delete</button>
+</form>
+
+{% endfor %}
+
+{% endblock %}
