@@ -18,9 +18,6 @@ class TestViews:
             username=email,
             password=password,
         )
-        print(User.objects.all())
-        print(email)
-        print(User.objects.first().password)
         view_names_200 = [
             "index",
             "register",
