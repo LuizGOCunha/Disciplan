@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractBaseUser
 
 # Create your models here.
 
+
 class UserManager(models.Manager):
     def get_by_natural_key(self, email):
         return self.get(email=email)
@@ -33,7 +34,7 @@ class Activity(models.Model):
         (400, "hard"),
         (500, "very hard"),
     )
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='activities')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="activities")
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True, null=True)
     difficulty = models.IntegerField(choices=DIFFICULTY_CHOICES)
