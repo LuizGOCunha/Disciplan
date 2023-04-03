@@ -4,7 +4,18 @@ from website.models import User
 
 
 @pytest.fixture()
-def user_data():
+def user_info() -> dict:
+    data = {
+        "first_name": "Nome",
+        "last_name": "Sobrenome",
+        "email": "test@email.com",
+        "password": "123456",
+    }
+    return data
+
+
+@pytest.fixture()
+def user_data() -> dict:
     first_name = "Nome"
     last_name = "Sobrenome"
     email = "test@email.com"
