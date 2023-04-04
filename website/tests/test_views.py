@@ -67,3 +67,11 @@ class TestViews:
 
         assert response.status_code == 302
         assert self.client.session.session_key, "Failed to create Session"
+
+    def test_if_we_can_logout_through_view(self, user_data):
+        email = user_data["credentials"]["email"]
+        password = user_data["credentials"]["password"]
+        self.client.login(username=email, password=password)
+        self.client.get(path=reverse("logout"))
+
+        assert not self.client.session.session_key, "We still have a session key"
