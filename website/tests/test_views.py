@@ -3,7 +3,7 @@ import pytest
 from django.test import Client, RequestFactory
 from django.urls import reverse
 
-from website.models import User
+from website.models import User, Activity
 
 
 @pytest.mark.django_db
@@ -75,3 +75,17 @@ class TestViews:
         self.client.get(path=reverse("logout"))
 
         assert not self.client.session.session_key, "We still have a session key"
+
+    def test_if_we_can_create_an_activity_object_through_activity_view(
+        self, user_data, activity_info
+    ):
+        email = user_data["credentials"]["email"]
+        password = user_data["credentials"]["password"]
+        self.client.login(username=email, password=password)
+        self.client.post(path=reverse("activities"), data=activity_info)
+
+        assert Activity.objects.count() != 0, "No activities created in the database"
+        activity = Activity.objects.first()
+        assert (
+            activity.user == user_data["object"]
+        ), "Activity has no connection with the user that created it"

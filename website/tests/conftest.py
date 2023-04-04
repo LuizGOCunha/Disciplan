@@ -30,3 +30,16 @@ def user_data() -> dict:
     object.save()
     data = {"credentials": {"email": email, "password": password}, "object": object}
     return data
+
+
+@pytest.fixture()
+def activity_info() -> dict:
+    title = "Test Title"
+    description = "Test Description"
+    difficulty = 300
+    data = {
+        "title": title,
+        "description": description,
+        "difficulty": difficulty,
+    }
+    return data
