@@ -84,7 +84,7 @@ class TestViews:
         self.client.login(username=email, password=password)
         self.client.post(path=reverse("activities"), data=activity_info)
 
-        assert Activity.objects.count() != 0, "No activities created in the database"
+        assert Activity.objects.count() == 1, "No activities created in the database"
         activity = Activity.objects.first()
         assert (
             activity.user == user_data["object"]
