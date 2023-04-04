@@ -29,7 +29,7 @@ AUTH_USER_MODEL = "website.User"
 DEBUG = True
 
 # **** MUST BE CHANGED FOR DEPLOYMENT! ****
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition

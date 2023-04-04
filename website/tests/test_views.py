@@ -53,3 +53,17 @@ class TestViews:
         assert user.last_name == user_info["last_name"]
         assert user.email == user_info["email"]
         assert user.check_password(user_info["password"])
+
+    def test_if_we_can_login_through_loginv_view(self, user_data):
+        email = user_data["credentials"]["email"]
+        password = user_data["credentials"]["password"]
+        response = self.client.post(
+            path=reverse("login"),
+            data={
+                "email": email,
+                "password": password,
+            },
+        )
+
+        assert response.status_code == 302
+        assert self.client.session.session_key, "Failed to create Session"
