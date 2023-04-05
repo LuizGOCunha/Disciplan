@@ -29,3 +29,27 @@ class TestModels:
         assert db_user.check_password(
             user_info["password"]
         ), "User from db doesn't have correct password"
+
+    def test_if_we_can_create_an_activity_model(self, user_data, activity_info):
+        activity = Activity(
+            user=user_data["object"],
+            title=activity_info["title"],
+            description=activity_info["description"],
+            difficulty=activity_info["difficulty"],
+        )
+        activity.full_clean()
+        activity.save()
+
+        assert (
+            Activity.objects.count() == 1
+        ), "Number of activity objects is not the correct amount"
+        db_activity = Activity.objects.first()
+        assert (
+            db_activity.title == activity_info["title"]
+        ), "Activity from db does not have correct title"
+        assert (
+            db_activity.description == activity_info["description"]
+        ), "Activity from db does not have correct description"
+        assert (
+            db_activity.difficulty == activity_info["difficulty"]
+        ), "Activity from db does not have correct difficulty"
