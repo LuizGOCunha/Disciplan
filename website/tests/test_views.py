@@ -23,6 +23,7 @@ class TestViews:
             "register",
             "login",
             "activities",
+            "calendar",
         ]
         view_names_302 = [
             "logout",

@@ -1,7 +1,10 @@
+import datetime
+
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.core.handlers.wsgi import WSGIRequest
 from django.db import IntegrityError
+from django.utils import timezone
 
 from django.contrib.auth import authenticate, login, logout
 
@@ -97,3 +100,34 @@ def activities(request: WSGIRequest) -> HttpResponse:
             activity.save()
 
     return render(request, "activities.html", context)
+
+
+def calendar(
+    request: WSGIRequest,
+    year: int = timezone.now().year,
+    month: int = timezone.now().month,
+) -> HttpResponse:
+    context = {}
+    context["month"] = month
+    context["year"] = year
+
+    day = 1
+    date = datetime.date(year, month, day)
+    days = []
+    while date.month == month:
+        days.append(date)
+        date += datetime.timedelta(days=1)
+
+    week = []
+    weeks = []
+    for day in days:
+        week.append(day)
+        if len(week) == 7:
+            weeks.append(week)
+            week = []
+    # append last week
+    weeks.append(week)
+
+    context["days"] = days
+    context["weeks"] = weeks
+    return render(request, "calendar.html", context)

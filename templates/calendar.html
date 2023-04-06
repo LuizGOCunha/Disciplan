@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1> Your calendar </h1>
+
+<!-- <a href= {% url 'calendar' year=year|add:1 month=month %} >Next Year</a>
+<a href= {% url 'calendar' year=year month=month|add:1 %} >Next Month</a> -->
+
+<style>
+    table, th, td {
+      border:1px solid black;
+    }
+</style>
+<table style="width:100%">
+{% for week in weeks %}
+<tr>
+    {% for day in week%}
+
+    <td>
+        <a href='#'>{{ day }}</a>
+    </td>
+
+    {% endfor %}
+</tr>
+{% endfor %}
+</table>
+{% endblock %}
